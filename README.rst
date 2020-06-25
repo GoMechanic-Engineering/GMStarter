@@ -11,6 +11,12 @@ Make sure you are authenticated on git with your official GoMechanic Git account
     pip install git+https://github.com/GoMechanic-Engineering/GMStarter
 
 
+Add a variable "GM_SERVER_NAME" to your settings file like this::
+
+
+    GM_SERVER_NAME = "server-prod/uat/demo/local"
+
+
 Add "gmlogging" to your INSTALLED_APPS setting like this::
 
 
@@ -27,7 +33,7 @@ GMLogging
 
 
     from gmstarter.gmlogging import GMLogging
-    gm_logging = GMLogging(SITE_NAME)
+    gm_logging = GMLogging(GM_SERVER_NAME)
 
 
 2. Use gm_logging.print instead of python print like this::
