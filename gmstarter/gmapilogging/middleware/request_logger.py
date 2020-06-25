@@ -6,6 +6,7 @@ import os
 import uuid
 from time import strftime
 import json
+import traceback
 
 
 p = Producer(settings.KAFKA_CONFIG)
@@ -52,3 +53,14 @@ class GMLoggerMiddleware(MiddlewareMixin):
         request_information['meta_data'] = str(request.META)
         request_information['cookies'] = str(request.COOKIES)
         return request_information
+
+    def process_exception(self, request, exception):
+        curr_time = datetime.datetime.utcnow()
+        diff = curr_time - request._request_start_time
+        
+        # print traceback.format_exc()
+        value = {'type' : 'exception', 'path' : str(request.path), 'time_diff' : str(diff.total_seconds()), 'request_id' : request._request_id, 
+            'info' : str(traceback.format_exc()), 'status' : 1000}
+        p.produce('request_logging', key=p_key, value=json.dumps(value).encode('utf-8'), callback=None)
+        
+        
