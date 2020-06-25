@@ -10,9 +10,7 @@ import traceback
 
 
 p = Producer(settings.KAFKA_CONFIG)
-p_key = settings.SITE_NAME
-if settings.DEBUG:
-    settings.SITE_NAME + "_dev"
+p_key = settings.GM_SERVER_NAME
 
 
 class GMLoggerMiddleware(MiddlewareMixin):
