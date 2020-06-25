@@ -23,7 +23,7 @@ GMLogging
 
 3. Use gm_logging.print instead of python print like this::
    
-   ```
+    ```
     import settings
     gm_logging.print("1", 2, 3.0, {"4" : "5"}, [6,7], ["8", "9"])
     ```
