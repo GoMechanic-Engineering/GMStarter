@@ -2,6 +2,15 @@
 GoMechanic Starter
 =====
 
+Installation
+-----------
+
+Make sure you are authenticated on git with your official GoMechanic Git account and install like this::
+
+
+    pip install git+https://github.com/GoMechanic-Engineering/GMStarter
+
+
 Add "gmlogging" to your INSTALLED_APPS setting like this::
 
 
