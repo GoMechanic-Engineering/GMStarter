@@ -2,28 +2,40 @@
 GoMechanic Starter
 =====
 
-GMLogging
------------
-
-1. Add "gmlogging" to your INSTALLED_APPS setting like this::
+Add "gmlogging" to your INSTALLED_APPS setting like this::
 
     ```
     INSTALLED_APPS = [
         ...
-        'gmlogging',
+        'gmstarter',
     ]
     ```
 
-2. Initialize in your settings.py like this::
+GMLogging
+-----------
+
+1. Initialize in your settings.py like this::
 
     ```
-    import gmlogging
-    gm_logging = gmlogging.GMLogging("name of your project")
+    from gmstarter.gmlogging import GMLogging
+    gm_logging = GMLogging(SITE_NAME)
     ```
 
-3. Use gm_logging.print instead of python print like this::
+2. Use gm_logging.print instead of python print like this::
    
     ```
     import settings
     gm_logging.print("1", 2, 3.0, {"4" : "5"}, [6,7], ["8", "9"])
+    ```
+
+GMAPILogging
+-----------
+
+1. Add the middleware to your settings.py like this::
+
+    ```
+    MIDDLEWARE = [
+        ...
+        'gmstarter.gmapilogging.middleware.request_logger.GMLoggerMiddleware'
+    ]
     ```
