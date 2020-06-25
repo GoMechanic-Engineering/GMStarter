@@ -5,13 +5,12 @@ from setuptools import setup
 install_requires = [
     'requests==2.22.0',
     'confluent-kafka',
-    'zeep==3.4.0',
     'jsonschema==3.2.0'
 ]
 
 setup(
     name="GMStarter",
-    version="1.1",
+    version="1.2",
     description='GMStarter Pack',
     long_description="GMStarter Pack for GoMechanic Python installations",
     url="https://github.com/GoMechanic-Engineering/GMStarter",
