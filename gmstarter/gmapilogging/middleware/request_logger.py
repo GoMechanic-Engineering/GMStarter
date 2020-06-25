@@ -12,6 +12,8 @@ import traceback
 p = Producer(settings.KAFKA_CONFIG)
 p_key = settings.GM_SERVER_NAME
 
+print("hohoho")
+
 
 class GMLoggerMiddleware(MiddlewareMixin):
     """
