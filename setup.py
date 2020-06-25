@@ -10,7 +10,7 @@ install_requires = [
 
 setup(
     name="GMStarter",
-    version="1.2",
+    version="1.3",
     description='GMStarter Pack',
     long_description="GMStarter Pack for GoMechanic Python installations",
     url="https://github.com/GoMechanic-Engineering/GMStarter",
