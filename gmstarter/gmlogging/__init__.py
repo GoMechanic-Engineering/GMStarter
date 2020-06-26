@@ -3,6 +3,7 @@ from confluent_kafka import Producer
 import datetime
 from django.conf import settings
 import json
+import traceback
 
 p = Producer(settings.KAFKA_CONFIG)
 
@@ -15,8 +16,13 @@ class GMLogging:
     def print(self, *args):
         print(args)
         
-
-        p.produce('print_logging', key=self.global_name, value=json.dumps(self.getFormattedArgs(args)).encode('utf-8'), callback=None)
+        try:
+            p.produce('print_logging', key=self.global_name, value=json.dumps(self.getFormattedArgs(args)).encode('utf-8'), callback=None)
+        except Exception as e:
+            try:
+                p.produce('print_logging', key=self.global_name, value=json.dumps(self.getFormattedExceptionArgs(args)).encode('utf-8'), callback=None)
+            except Exception as e1:
+                print(str(traceback.format_exc()))
 
     def getFormattedArgs(self, *args):
         value = {'type' : 'print', 'time' : str(datetime.datetime.now()), 'info' : {}}
@@ -25,4 +31,8 @@ class GMLogging:
             value['info']['arg'+str(count)] = str(arg)
             count += 1
 
+        return value
+
+    def getFormattedExceptionArgs(self, *args):
+        value = {'type' : 'kafka_exception', 'time' : str(datetime.datetime.now()), 'info' : "exception"}
         return value
