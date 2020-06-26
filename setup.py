@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import io
 import os
 import re
@@ -60,8 +60,10 @@ setup(
     keywords='gomechanic',
     install_requires=install_requires,
     # packages=['gmstarter'],
-    packages=get_packages('gmstarter'),
-    package_data=get_package_data('gmstarter'),
+    # packages=get_packages('gmstarter'),
+    packages=find_packages(),
+    include_package_data=True,
+    # package_data=get_package_data('gmstarter'),
     python_requires='>=3.5',
     classifiers=[
         # 'Development Status :: 5 - Production/Stable',
