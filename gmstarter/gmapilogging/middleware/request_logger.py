@@ -41,6 +41,7 @@ class GMLoggerMiddleware(MiddlewareMixin):
             res_content = response.content
         value = {'type' : 'response', 'path' : str(request.path), 'time_diff' : str(diff.total_seconds()), 'request_id' : request._request_id, 
             'info' : str(res_content), 'status' : response.status_code}
+        print(value)
         p.produce('request_logging', key=p_key, value=json.dumps(value).encode('utf-8'), callback=None)
         # self.metric_logger.info('%s sec elapsed in processing API %s request with id %s. \nResponse %s \n', diff.total_seconds(),
         #                         request.path, request._request_id,res_content)
