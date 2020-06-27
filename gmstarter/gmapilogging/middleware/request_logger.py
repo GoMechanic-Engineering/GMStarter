@@ -67,7 +67,12 @@ class GMLoggerMiddleware(MiddlewareMixin):
 
     def get_request_information(self, request):
         request_information = dict()
-        request_information['data'] = str(request.GET) or str(request.POST) or str(request.body)
+        data = request.GET or request.POST or request.body
+        try:
+            data_json = json.dumps(data)
+        except:
+            data_json = str(data)
+        request_information['data'] = data_json
         request_information['headers'] = str(request.headers)
         request_information['meta_data'] = str(request.META)
         request_information['cookies'] = str(request.COOKIES)
