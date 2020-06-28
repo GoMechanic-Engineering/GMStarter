@@ -1,4 +1,4 @@
-from djano.conf.settings import DB
+from django.conf.settings import DB
 import sys
 from django.db.models import Model
 from django.apps import apps 
