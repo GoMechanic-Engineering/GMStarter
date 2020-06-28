@@ -1,4 +1,4 @@
-from django.conf.settings import DB
+from django.conf import settings
 import sys
 from django.db.models import Model
 from django.apps import apps 
@@ -8,7 +8,7 @@ class MongoConnection(Model):
     collection_name = ''
 
     def __init__(self):
-        self.collection = DB[self.collection_name]
+        self.collection = settings.DB[self.collection_name]
 
 
 class GMBaseModel(MongoConnection):
