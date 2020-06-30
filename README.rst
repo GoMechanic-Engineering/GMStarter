@@ -53,3 +53,16 @@ GMAPILogging
         ...
         'gmstarter.gmapilogging.middleware.request_logger.GMLoggerMiddleware'
     ]
+
+
+GMCache
+-----------
+
+1. Initialize GMCache like this::
+
+    from gmstarter.gmcache import GMCache
+    gmcache = GMCache()
+    gmcache.set("key", "value", days=5)
+    value = gmcache.get("key")
+    gmcache.setJson("key", jsonValue)
+    gmcache.getJson("key")

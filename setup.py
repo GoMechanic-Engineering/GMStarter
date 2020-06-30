@@ -46,7 +46,8 @@ def get_package_data(package):
 version = get_version('gmstarter')
 
 install_requires = [
-    'confluent-kafka'
+    'confluent-kafka',
+    'redis'
 ]
 
 setup(
