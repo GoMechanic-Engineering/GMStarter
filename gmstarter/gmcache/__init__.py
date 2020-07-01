@@ -44,6 +44,10 @@ class GMCache:
     def exists(self, *keys):
         return self.REDIS.exists(keys)
 
+    def existsURLResponse(self, request):
+        key = request.path.replace('/','-*-') + '-*-'.join([*list(functools.reduce(lambda x, y: x + y, sorted(request.query_params.items())))])
+        return (self.REDIS.exists(key) != 0)
+
     def setURLResponse(self, request, value=None, weeks=0, days=0, hours=0, minutes=0, seconds=0, nExists=False, xExists=False):
         expiry = (weeks*7*24*60*60) + (days*24*60*60) + (hours*60*60) + (hours*60*60) + (minutes*60) + seconds
         key = request.path.replace('/','-*-') + '-*-'.join([*list(functools.reduce(lambda x, y: x + y, sorted(request.query_params.items())))])
