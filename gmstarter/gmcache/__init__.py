@@ -4,6 +4,7 @@ from django.db.models import Model
 from django.apps import apps
 import json
 import functools
+from bson.json_util import dumps
 
 
 class GMCache:
@@ -47,7 +48,7 @@ class GMCache:
         #     self.REDIS.set(key, value, ex=expiry, nx=nExists, xx=xExists)
         # else:
         #     self.REDIS.set(key, value, nx=nExists, xx=xExists)
-        self.REDIS.execute_command('JSON.SET', key, '.', json.dumps(value))
+        self.REDIS.execute_command('JSON.SET', key, '.', dumps(value))
         if expiry != 0:
             self.REDIS.expire(key, expiry)
 
