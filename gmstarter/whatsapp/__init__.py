@@ -21,9 +21,9 @@ class WhatsappMessage:
 
     def send(self, phone, templateId, data):
         formattedArgs = self.getFormattedArgs(phone, templateId, data)
-        print(formattedArgs)
+        # print(formattedArgs)
         r = requests.post(url = "https://comms.gomechanic.app/api/v1/whatsapp/whatsapp-message-send", data = json.dumps(formattedArgs), headers={'Content-Type' : 'application/json'})
-        print(r.json())
+        # print(r.json())
         # try:
         #     p.produce('whatsapp_message', key=settings.GM_SERVER_NAME, value=json.dumps(self.getFormattedArgs(phone, templateId, data)).encode('utf-8'), callback=None)
         # except Exception as e:
