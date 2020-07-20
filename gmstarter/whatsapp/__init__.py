@@ -20,7 +20,9 @@ class WhatsappMessage:
         self.send(phone, templateId, data)
 
     def send(self, phone, templateId, data):
-        r = requests.post(url = "https://comms.gomechanic.app/api/v1/whatsapp/whatsapp-message-send", data = json.dumps(self.getFormattedArgs(phone, templateId, data)), headers={'Content-Type' : 'application/json'})
+        formattedArgs = self.getFormattedArgs(phone, templateId, data)
+        print(formattedArgs)
+        r = requests.post(url = "https://comms.gomechanic.app/api/v1/whatsapp/whatsapp-message-send", data = json.dumps(formattedArgs), headers={'Content-Type' : 'application/json'})
         print(r.json())
         # try:
         #     p.produce('whatsapp_message', key=settings.GM_SERVER_NAME, value=json.dumps(self.getFormattedArgs(phone, templateId, data)).encode('utf-8'), callback=None)
