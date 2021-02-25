@@ -36,7 +36,7 @@ class GMBaseModel(MongoConnection):
         self.collection.update_one(match, data)
 
     def update_many(self, match, data, upsert=True):
-        self.collection.update_one(match, data, upsert)
+        self.collection.update_many(match, data, upsert)
 
     def insert_one(self, data):
         return self.collection.insert(data)
