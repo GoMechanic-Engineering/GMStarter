@@ -41,6 +41,9 @@ class GMBaseModel(MongoConnection):
     def insert_one(self, data):
         return self.collection.insert(data)
 
+    def insert_many(self, data):
+        return self.collection.insert_many(data)
+
     def delete_many(self, match):
         self.collection.delete_many(match)
 
