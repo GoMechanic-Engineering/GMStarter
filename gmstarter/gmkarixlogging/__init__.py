@@ -18,11 +18,11 @@ class GMKarixLogging:
         
         try:
             p.produce('karix_logging', key=self.global_name, value=json.dumps(self.getFormattedArgs(args)).encode('utf-8'), callback=None)
-            p.flush()
+            # p.flush()
         except Exception as e:
             try:
                 p.produce('karix_logging', key=self.global_name, value=json.dumps(self.getFormattedExceptionArgs(args)).encode('utf-8'), callback=None)
-                p.flush()
+                # p.flush()
             except Exception as e1:
                 print(str(traceback.format_exc()))
 
