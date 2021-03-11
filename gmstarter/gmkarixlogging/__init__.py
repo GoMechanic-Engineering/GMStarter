@@ -7,7 +7,7 @@ import traceback
 
 p = Producer(settings.KAFKA_CONFIG)
 
-class GMLogging:
+class GMKarixLogging:
     global_name = ""
 
     def __init__(self, global_name):
@@ -17,15 +17,15 @@ class GMLogging:
         print(args)
         
         try:
-            p.produce('print_logging', key=self.global_name, value=json.dumps(self.getFormattedArgs(args)).encode('utf-8'), callback=None)
+            p.produce('karix_logging', key=self.global_name, value=json.dumps(self.getFormattedArgs(args)).encode('utf-8'), callback=None)
         except Exception as e:
             try:
-                p.produce('print_logging', key=self.global_name, value=json.dumps(self.getFormattedExceptionArgs(args)).encode('utf-8'), callback=None)
+                p.produce('karix_logging', key=self.global_name, value=json.dumps(self.getFormattedExceptionArgs(args)).encode('utf-8'), callback=None)
             except Exception as e1:
                 print(str(traceback.format_exc()))
 
     def getFormattedArgs(self, *args):
-        value = {'type' : 'print', 'time' : str(datetime.datetime.now()), 'info' : {}}
+        value = {'type' : 'karix', 'time' : str(datetime.datetime.now()), 'info' : {}}
         count = 0
         for arg in args:
             value['info']['arg'+str(count)] = str(arg)

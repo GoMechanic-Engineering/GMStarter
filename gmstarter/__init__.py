@@ -1,6 +1,6 @@
 __title__ = "GMStarter"
-__version__ = "1.5.6"
-__author__ = "Ashish Yadav & Prasenjit Singh"
+__version__ = "1.5.8"
+__author__ = "Prasenjit Singh"
 __license__ = "BSD"
 __copyright__ = "Copyright 2021 GoMechanic"
 

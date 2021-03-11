@@ -1,4 +1,4 @@
-Copyright (c) 2020 Prasenjit Singh
+Copyright (c) 2021 Prasenjit Singh
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
