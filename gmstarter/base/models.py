@@ -15,7 +15,7 @@ class GMBaseModel(MongoConnection):
     collection_name = ""
 
     def find(self, match, project=None, sort=None):
-        return self.collection.find(match, project, sort)
+        return self.collection.find(match, project, sort=sort)
 
     def find_one(self, match, sort=None, project=None):
         if sort:
