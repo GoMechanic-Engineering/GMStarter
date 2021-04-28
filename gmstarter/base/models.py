@@ -1,7 +1,8 @@
 from django.conf import settings
 import sys
 from django.db.models import Model
-from django.apps import apps 
+from django.apps import apps
+import random, string, time
 
 
 class MongoConnection(Model):
@@ -155,3 +156,14 @@ class GMBaseModel(MongoConnection):
 
         
         return pipeline
+
+def get_unique_id(collection_name):
+    cur_time_str = str(int(time.time() * 1000000.0))
+    id_int = int('9'+cur_time_str[9:-5]+''.join(random.choice(string.digits) for _ in range(3))+cur_time_str[13:])
+    return data_exist_check(id_int, collection_name)
+
+def data_exist_check(id, collection_name):
+    if settings.DB[collection_name].find_one({'id':id}):
+        id+=1
+        return data_exist_check(id, collection_name)
+    return id
