@@ -7,13 +7,18 @@ import random, string, time
 
 class MongoConnection(Model):
     collection_name = ''
+    OTHER_DB = False
 
     def __init__(self):
-        self.collection = settings.DB[self.collection_name]
+        if self.OTHER_DB:
+            self.collection = settings.OTHER_DB[self.collection_name]
+        else:
+            self.collection = settings.DB[self.collection_name]
 
 
 class GMBaseModel(MongoConnection):
     collection_name = ""
+    OTHER_DB = False
 
     def get_unique_id(self):
         cur_time_str = str(int(time.time() * 1000000.0))
