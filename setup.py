@@ -47,7 +47,8 @@ version = get_version('gmstarter')
 
 install_requires = [
     'confluent-kafka',
-    'redis'
+    'redis',
+    'twilio'
 ]
 
 setup(
@@ -56,7 +57,7 @@ setup(
     description='GMStarter Pack',
     long_description="GMStarter Pack for GoMechanic Python installations",
     url="https://github.com/GoMechanic-Engineering/GMStarter",
-    author="Ashish Yadav, Prasenjit Singh",
+    author="Prasenjit Singh",
     license="BSD-3-Clause",
     keywords='gomechanic',
     install_requires=install_requires,
