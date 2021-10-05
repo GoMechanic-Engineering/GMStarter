@@ -46,11 +46,20 @@ class GMBaseModel(MongoConnection):
         else:
             return self.collection.find_one_and_update(match, {"$set": data}, upsert=upsert, return_document=True)
 
+    def find_one_and_update_alt(self, match, data, sort=None, upsert=True):
+        if sort:
+            return self.collection.find_one_and_update(match, data, upsert=upsert, return_document=True, sort=sort)
+        else:
+            return self.collection.find_one_and_update(match, data, upsert=upsert, return_document=True)
+    
     def update_one(self, match, data):
         self.collection.update_one(match, {'$set': data})
 
     def update(self, match, data):
         self.collection.update_one(match, data)
+
+    def update_alt(self, match, data, upsert=True):
+        self.collection.update_one(match, data, upsert=upsert)
 
     def update_many(self, match, data, upsert=True):
         self.collection.update_many(match, data, upsert)
