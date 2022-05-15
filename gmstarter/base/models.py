@@ -73,6 +73,9 @@ class GMBaseModel(MongoConnection):
     def delete_many(self, match):
         self.collection.delete_many(match)
 
+    def bulk_write(self, data):
+        self.collection.bulk_write(data)
+
     def aggregateVerbose(self, query, single=False):
         result = self.collection.aggregate(query)
         if single:
