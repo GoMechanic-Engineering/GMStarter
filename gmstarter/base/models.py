@@ -31,6 +31,9 @@ class GMBaseModel(MongoConnection):
             return self.data_exist_check(id)
         return id
 
+    def count(self):
+        return self.collection.count()
+
     def find(self, match, project=None, sort=None):
         return self.collection.find(match, project, sort=sort)
 
